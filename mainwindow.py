@@ -88,7 +88,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {background: none;}
         lines=[]   # читаем лог файл
         file=open(file_name)
         for line in file:
-            lines.append(line.rstrip('\n')) # Читаем фаил по строкам
+            lines.append(line.rstrip('\n')) # Читаем файл по строкам
         file.close()
 
         #print lines
@@ -104,7 +104,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {background: none;}
         elif len(lines) < 9:
             self.scene.clear()
             textItem = QGraphicsTextItem("",None,self.scene)
-            textItem.setHtml(SetInfoPanelText ('wrong log'))
+            textItem.setHtml(SetInfoPanelText ('неверный лог'))
             textItem.setPos(50, 85)
             return
         else:
