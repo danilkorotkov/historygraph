@@ -17,24 +17,20 @@ class GraphWindow (QtGui.QMainWindow, Ui_MainWindow):
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
         self.setWindowFlags(Qt.FramelessWindowHint)
-        self.listWidget.verticalScrollBar().setStyleSheet(
-"QScrollBar:vertical {width: 35px; background: rgb(194, 194, 194); margin: 0px;} \
-QScrollBar::handle:vertical {min-height: 35x;} \
-QScrollBar::sub-line:vertical {subcontrol-position: top; subcontrol-origin: content; height: 70px; } \
-QScrollBar::add-line:vertical {subcontrol-position: bottom; subcontrol-origin: content; height: 70px; } \
-QScrollBar::down-arrow:vertical, QScrollBar::up-arrow:vertical {background: NONE;} \
-QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {background: none;}");
-        
-
-        
+        self.listWidget.verticalScrollBar().setStyleSheet(_fromUtf8(
+"QScrollBar:vertical {width: 35px; background: rgb(194, 194, 194); margin: 0px;}\n"
+"QScrollBar::handle:vertical {min-height: 35x;}\n"
+"QScrollBar::sub-line:vertical {subcontrol-position: top; subcontrol-origin: content; height: 70px; }\n"
+"QScrollBar::add-line:vertical {subcontrol-position: bottom; subcontrol-origin: content; height: 70px; }\n"
+"QScrollBar::down-arrow:vertical, QScrollBar::up-arrow:vertical {background: NONE;}\n"
+"QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {background: none;}"))
         
         self.ExitButton.pressed.connect(self.test)
-
         self.listWidget.itemClicked.connect(self.test5)
-        
+    
         self.scene=QtGui.QGraphicsScene()
-
         self.graphicsView.setScene(self.scene)
+        
         self.lf1=[]
         self.test2()
  
@@ -104,7 +100,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {background: none;}
         elif len(lines) < 9:
             self.scene.clear()
             textItem = QGraphicsTextItem("",None,self.scene)
-            textItem.setHtml(SetInfoPanelText ('неверный лог'))
+            textItem.setHtml(self.SetInfoPanelText ('неверный лог'))
             textItem.setPos(self.graphicsView.width()*0.9/2, self.graphicsView.height()*0.9/2)
             return
         else:
@@ -219,45 +215,45 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {background: none;}
         l=file_name.split('_')[1]
         if l=="1":
             
-            textItem.setHtml(SetInfoPanelText ("Линия 6,5 м."))# parse from file
+            textItem.setHtml(self.SetInfoPanelText ("Линия 6,5 м."))# parse from file
         else:
-            textItem.setHtml(SetInfoPanelText ("Линия 3,5 м."))# parse from file
+            textItem.setHtml(self.SetInfoPanelText ("Линия 3,5 м."))# parse from file
         textItem.setPos(lx+20, ly+0)
         
         self.scene.addLine(lx+10,ly+45,lx+45,ly+45,QPen(QColor(Qt.black),4) )
         #textItem = QGraphicsTextItem("",None,self.scene).setPos(lx+50, ly+35)
         textItem = QGraphicsTextItem("",None,self.scene)
-        textItem.setHtml(SetInfoPanelText ('Температура'))
+        textItem.setHtml(self.SetInfoPanelText ('Температура'))
         textItem.setPos(lx+50, ly+25)
         
         self.scene.addLine(lx+10,ly+65,lx+45,ly+65,QPen(QColor(Qt.red),4) )
 #        textItem = QGraphicsTextItem("Ustavka",None,self.scene).setPos(lx+50, ly+55)
         textItem = QGraphicsTextItem("",None,self.scene)
-        textItem.setHtml(SetInfoPanelText ('Уставка ' + str(ust) ))
+        textItem.setHtml(self.SetInfoPanelText ('Уставка ' + str(ust) ))
         textItem.setPos(lx+50, ly+45)
 
         self.scene.addLine(lx+10,ly+85,lx+45,ly+85,QPen(QColor(Qt.cyan),4) )
 #        textItem = QGraphicsTextItem("Power",None,self.scene).setPos(lx+50, ly+75)
         textItem = QGraphicsTextItem("",None,self.scene)
-        textItem.setHtml(SetInfoPanelText ('Мощность'))
+        textItem.setHtml(self.SetInfoPanelText ('Мощность'))
         textItem.setPos(lx+50, ly+65)
         
         self.scene.addLine(lx+10,ly+105,lx+45,ly+105,QPen(QColor(Qt.magenta),4) )
 #        textItem = QGraphicsTextItem("State",None,self.scene).setPos(lx+50, ly+95)
         textItem = QGraphicsTextItem("",None,self.scene)
-        textItem.setHtml(SetInfoPanelText ('Состояние'))
+        textItem.setHtml(self.SetInfoPanelText ('Состояние'))
         textItem.setPos(lx+50, ly+85)
 
         self.scene.addLine(lx+10,ly+125,lx+45,ly+125,QPen(QColor(Qt.green),4) )
 #        textItem = QGraphicsTextItem("Fan",None,self.scene).setPos(lx+50, ly+115)
         textItem = QGraphicsTextItem("",None,self.scene)
-        textItem.setHtml(SetInfoPanelText ('Вентилятор'))
+        textItem.setHtml(self.SetInfoPanelText ('Вентилятор'))
         textItem.setPos(lx+50, ly+105)
 
         self.scene.addLine(lx+10,ly+145,lx+45,ly+145,QPen(QColor(Qt.yellow),4) )
 #        textItem = QGraphicsTextItem("Fan",None,self.scene).setPos(lx+50, ly+115)
         textItem = QGraphicsTextItem("",None,self.scene)
-        textItem.setHtml(SetInfoPanelText ('Тены '+str(max5)))
+        textItem.setHtml(self.SetInfoPanelText ('Тены '+str(max5)))
         textItem.setPos(lx+50, ly+125)
 
 # Фактическая выдаржка
@@ -274,7 +270,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {background: none;}
         #t=hour+':'+min
         t=min+' мин'
         textItem = QGraphicsTextItem("",None,self.scene)
-        textItem.setHtml(SetInfoPanelText ('Выдержка '+t))
+        textItem.setHtml(self.SetInfoPanelText ('Выдержка '+t))
         textItem.setPos(lx+20, ly+145)
 # Начало
         s=time.gmtime(float(x0))
@@ -287,7 +283,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {background: none;}
         
         t=hour+':'+min        
         textItem = QGraphicsTextItem("",None,self.scene)
-        textItem.setHtml(SetInfoPanelText ('Начало '+t))
+        textItem.setHtml(self.SetInfoPanelText ('Начало '+t))
         textItem.setPos(lx+20, ly+165)
 # Окончание
         s=time.gmtime(float(x1))
@@ -299,18 +295,18 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {background: none;}
             hour='0'+hour
         t=hour+':'+min
         textItem = QGraphicsTextItem("",None,self.scene)
-        textItem.setHtml(SetInfoPanelText ('Окончание '+t))
+        textItem.setHtml(self.SetInfoPanelText ('Окончание '+t))
         textItem.setPos(lx+20, ly+185)
         
         
-def SetInfoPanelText (text):
-    out=_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Free Helvetian\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">%s</p></body></html>"%text, None)
-    return out 
-  
+    def SetInfoPanelText (self,text):
+        out=_translate("GraphWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+    "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+    "p, li { white-space: pre-wrap; }\n"
+    "</style></head><body style=\" font-family:\'Free Helvetian\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+    "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">%s</p></body></html>"%text, None)
+        return out 
+
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
