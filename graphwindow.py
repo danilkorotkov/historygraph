@@ -11,7 +11,7 @@ Ui_MainWindow, QtBaseClass = uic.loadUiType(MainInterfaceWindow)
 
 class GraphWindow (QtGui.QMainWindow, Ui_MainWindow):
     """MainWindow inherits QMainWindow"""
-    path=''
+    path="logs/"
     def __init__ ( self, parent = None ):
         super(GraphWindow, self).__init__(parent)
         Ui_MainWindow.__init__(self)
@@ -43,7 +43,7 @@ class GraphWindow (QtGui.QMainWindow, Ui_MainWindow):
         
         # Funkzija vivoda imen failov v spisok
     def test2(self):
-        self.path="logs"
+        
         ld=os.listdir(self.path)   # Berem spisok failov  directorija
 
         lf=[]                           # Fil'truem faili s rasshireniem .txt - log faili
@@ -83,7 +83,7 @@ class GraphWindow (QtGui.QMainWindow, Ui_MainWindow):
         file_name=self.lf1[self.listWidget.currentRow()][0] # параметр функции - имя лог файла 
 
         lines=[]   # читаем лог файл
-        file=open(self.path+'/'+file_name)
+        file=open(self.path+file_name)
         for line in file:
             lines.append(line.rstrip('\n')) # Читаем файл по строкам
         file.close()
