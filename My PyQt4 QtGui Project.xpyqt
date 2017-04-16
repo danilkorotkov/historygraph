@@ -21,10 +21,10 @@
         <value>main.py</value>
     </variable>
     <variable name="FORMS">
-        <file>mainwindow.ui</file>
+        <file>graphwindow.ui</file>
     </variable>
     <variable name="PYTHON_FILES">
         <file>main.py</file>
-        <file>mainwindow.py</file>
+        <file>graphwindow.py</file>
     </variable>
 </project>

@@ -5,15 +5,15 @@ from PyQt4.Qt import Qt
 from PyQt4.QtGui import *
 from PyQt4.QtCore import pyqtSlot, QObject, SIGNAL
 
-MainInterfaceWindow = "mainwindow.ui" 
+MainInterfaceWindow = "graphwindow.ui" 
 Ui_MainWindow, QtBaseClass = uic.loadUiType(MainInterfaceWindow)
 
 
-class MainWindow (QtGui.QMainWindow, Ui_MainWindow):
+class GraphWindow (QtGui.QMainWindow, Ui_MainWindow):
     """MainWindow inherits QMainWindow"""
 
     def __init__ ( self, parent = None ):
-        super(MainWindow, self).__init__(parent)
+        super(GraphWindow, self).__init__(parent)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
         self.setWindowFlags(Qt.FramelessWindowHint)
@@ -105,7 +105,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {background: none;}
             self.scene.clear()
             textItem = QGraphicsTextItem("",None,self.scene)
             textItem.setHtml(SetInfoPanelText ('неверный лог'))
-            textItem.setPos(50, 85)
+            textItem.setPos(self.graphicsView.width()*0.9/2, self.graphicsView.height()*0.9/2)
             return
         else:
             step=29

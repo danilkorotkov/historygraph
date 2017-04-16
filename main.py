@@ -4,7 +4,7 @@ import sys
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
-from mainwindow import MainWindow
+from graphwindow import GraphWindow
 
 if __name__ == '__main__':
 
@@ -13,7 +13,7 @@ if __name__ == '__main__':
     app.setApplicationName( 'My PyQt4 QtGui Project' )
 
     # create widget
-    w = MainWindow()
+    w = GraphWindow()
     w.setWindowTitle( 'Events' )
     #w.show()
     w.showFullScreen() 
